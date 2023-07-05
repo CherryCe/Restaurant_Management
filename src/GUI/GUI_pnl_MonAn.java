@@ -1,0 +1,492 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package GUI;
+
+import BLL.BLL_MaTenLoai;
+import BLL.BLL_MonAn;
+import DTO.DTO_MonAn;
+import HELPER.HELPER_ChuyenDoi;
+import HELPER.HELPER_ShowHinhAnh;
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author CherryCe
+ */
+public class GUI_pnl_MonAn extends javax.swing.JPanel {
+
+    String Url;
+    int index = -1;
+
+    /**
+     * Creates new form pnl_ThucDon
+     */
+    public GUI_pnl_MonAn() {
+        initComponents();
+        load();
+        GUI_frm_DangNhap.isPhanQuyen(btnThem, btnXoa, btnSua);
+    }
+
+    public void add() {
+        DTO_MonAn monAn = new DTO_MonAn(txtMaMon.getText(), txtTenMon.getText(), String.valueOf(cboLoaiMon.getSelectedItem()), String.valueOf(cboDonViTinh.getSelectedItem()), HELPER_ChuyenDoi.SoInt(txtGiaTien.getText()), Url);
+        if (txtGiaTien.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Dữ Liệu Không Được Để Trống !!!");
+            return;
+        } else {
+            BLL_MonAn.add(monAn);
+        }
+    }
+
+    public void delete(int index) {
+        if (index < 0) {
+            JOptionPane.showMessageDialog(this, "Bạn Chưa Chọn Dòng Cần Sửa");
+        } else {
+            int choice = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Xóa Không ?", "Xóa", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                int indexs[] = tblMonAn.getSelectedRows();
+                for (int i = 0; i < indexs.length; i++) {
+                    String maMon = tblMonAn.getValueAt(indexs[i], 0).toString();
+                    BLL_MonAn.delete(maMon);
+                }
+            }
+            return;
+        }
+    }
+
+    public void edit(int index) {
+        if (index < 0) {
+            JOptionPane.showMessageDialog(this, "Bạn Chưa Chọn Dòng Cần Sửa");
+        } else {
+            DTO_MonAn monAn = new DTO_MonAn(txtMaMon.getText(), txtTenMon.getText(), String.valueOf(cboLoaiMon.getSelectedItem()), String.valueOf(cboDonViTinh.getSelectedItem()), Integer.parseInt(txtGiaTien.getText()), Url);
+            if (txtGiaTien.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Dữ Liệu Không Được Để Trống !!!");
+                return;
+            } else {
+                BLL_MonAn.edit(monAn);
+            }
+        }
+    }
+
+    public void search() {
+        if (txtTimKiem.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tìm Kiếm Không Được Để Trống");
+        } else {
+            ArrayList<DTO_MonAn> array = BLL_MonAn.search(txtTimKiem.getText());
+            BLL_MonAn.load(array, tblMonAn);
+        }
+    }
+
+    public void reset() {
+        txtMaMon.setText(null);
+        txtTenMon.setText(null);
+        txtGiaTien.setText(null);
+        txtTimKiem.setText(null);
+        lblHinhAnh.setIcon(null);
+        Url = null;
+    }
+
+    public void fill(int index) {
+        txtMaMon.setText(tblMonAn.getValueAt(index, 0).toString());
+        txtTenMon.setText(tblMonAn.getValueAt(index, 1).toString());
+        cboLoaiMon.setSelectedItem(tblMonAn.getValueAt(index, 2).toString());
+        cboDonViTinh.setSelectedItem(tblMonAn.getValueAt(index, 3).toString());
+        txtGiaTien.setText(tblMonAn.getValueAt(index, 4).toString());
+        Url = tblMonAn.getValueAt(index, 5).toString();
+        lblHinhAnh.setIcon(new HELPER_ShowHinhAnh().resizeImage(Url, lblHinhAnh));
+    }
+
+    public void open() {
+        try {
+            JFileChooser chooser = new JFileChooser("C:\\Users\\CherryCe\\Documents\\JAVA\\SOF203_ASM\\src\\AVATAR");
+            chooser.setDialogTitle("Open File");
+            chooser.showOpenDialog(this);
+            File nameIMG = chooser.getSelectedFile();
+            Url = nameIMG.getAbsolutePath();
+            if (Url != null) {
+                JOptionPane.showMessageDialog(this, "Add IMG Complete");
+                lblHinhAnh.setIcon(new HELPER_ShowHinhAnh().resizeImage(Url, lblHinhAnh));
+            } else {
+                JOptionPane.showMessageDialog(this, "Add IMG Failed");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void load() {
+        ArrayList<DTO_MonAn> array = BLL_MonAn.select();
+        BLL_MonAn.load(array, tblMonAn);
+    }
+
+    public void exit() {
+        int choice = JOptionPane.showConfirmDialog(this, "Bạn Có Muốn Thoát Chương Trình ?", "Thoát", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+        return;
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        pnlMonAn = new javax.swing.JPanel();
+        lblThoat = new javax.swing.JLabel();
+        scrMonAn = new javax.swing.JScrollPane();
+        tblMonAn = new javax.swing.JTable();
+        pnlChiTiet = new javax.swing.JPanel();
+        lblThongTin = new javax.swing.JLabel();
+        lblMaMon = new javax.swing.JLabel();
+        lblLoaiMon = new javax.swing.JLabel();
+        lblTenMon = new javax.swing.JLabel();
+        lblDonViTinh = new javax.swing.JLabel();
+        lblGiaTien = new javax.swing.JLabel();
+        txtGiaTien = new javax.swing.JTextField();
+        txtTenMon = new javax.swing.JTextField();
+        cboDonViTinh = new javax.swing.JComboBox<>();
+        txtMaMon = new javax.swing.JTextField();
+        txtTimKiem = new javax.swing.JTextField();
+        btnTimKiem = new javax.swing.JButton();
+        cboLoaiMon = new javax.swing.JComboBox<>();
+        lblTieuDe = new javax.swing.JLabel();
+        pnlHinhAnh = new javax.swing.JPanel();
+        lblHinhAnh = new javax.swing.JLabel();
+        btnXoa = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnLamMoi = new javax.swing.JButton();
+
+        pnlMonAn.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMonAn.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblThoat.setBackground(new java.awt.Color(49, 139, 130));
+        lblThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Close_18px.png"))); // NOI18N
+        lblThoat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblThoatMouseClicked(evt);
+            }
+        });
+        pnlMonAn.add(lblThoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 20, 20));
+
+        tblMonAn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tblMonAn.setForeground(new java.awt.Color(49, 139, 130));
+        tblMonAn.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mã Món", "Tên Món", "Loại Món", "Đơn Vị Tính", "Giá Tiền", "Hình Ảnh"
+            }
+        ));
+        tblMonAn.setSelectionForeground(new java.awt.Color(49, 139, 130));
+        tblMonAn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMonAnMouseClicked(evt);
+            }
+        });
+        scrMonAn.setViewportView(tblMonAn);
+
+        pnlMonAn.add(scrMonAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 107, 500, 500));
+
+        pnlChiTiet.setBackground(new java.awt.Color(255, 255, 255));
+        pnlChiTiet.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblThongTin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblThongTin.setForeground(new java.awt.Color(49, 139, 130));
+        lblThongTin.setText("Thông Tin:");
+        lblThongTin.setToolTipText("");
+        pnlChiTiet.add(lblThongTin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 20));
+
+        lblMaMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblMaMon.setForeground(new java.awt.Color(49, 139, 130));
+        lblMaMon.setText("Mã Món:");
+        lblMaMon.setToolTipText("");
+        pnlChiTiet.add(lblMaMon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 60, 29));
+
+        lblLoaiMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblLoaiMon.setForeground(new java.awt.Color(49, 139, 130));
+        lblLoaiMon.setText("Loại Món:");
+        lblLoaiMon.setToolTipText("");
+        pnlChiTiet.add(lblLoaiMon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, 29));
+
+        lblTenMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTenMon.setForeground(new java.awt.Color(49, 139, 130));
+        lblTenMon.setText("Tên Món:");
+        lblTenMon.setToolTipText("");
+        pnlChiTiet.add(lblTenMon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, 29));
+
+        lblDonViTinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDonViTinh.setForeground(new java.awt.Color(49, 139, 130));
+        lblDonViTinh.setText("Đơn Vị Tính:");
+        lblDonViTinh.setToolTipText("");
+        pnlChiTiet.add(lblDonViTinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 77, 29));
+
+        lblGiaTien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblGiaTien.setForeground(new java.awt.Color(49, 139, 130));
+        lblGiaTien.setText("Giá Tiền:");
+        lblGiaTien.setToolTipText("");
+        pnlChiTiet.add(lblGiaTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 297, 60, 30));
+
+        txtGiaTien.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtGiaTien.setForeground(new java.awt.Color(49, 139, 130));
+        txtGiaTien.setToolTipText("");
+        txtGiaTien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtGiaTienKeyReleased(evt);
+            }
+        });
+        pnlChiTiet.add(txtGiaTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 190, 29));
+
+        txtTenMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTenMon.setForeground(new java.awt.Color(49, 139, 130));
+        txtTenMon.setToolTipText("");
+        txtTenMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTenMonActionPerformed(evt);
+            }
+        });
+        pnlChiTiet.add(txtTenMon, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 190, 29));
+
+        cboDonViTinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboDonViTinh.setForeground(new java.awt.Color(49, 139, 130));
+        cboDonViTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chai", "Lon", "Phần", "Đĩa", "Chén", "Hộp", "Chiếc", "Kg" }));
+        cboDonViTinh.setToolTipText("");
+        cboDonViTinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboDonViTinhActionPerformed(evt);
+            }
+        });
+        pnlChiTiet.add(cboDonViTinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 190, 29));
+
+        txtMaMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtMaMon.setForeground(new java.awt.Color(49, 139, 130));
+        txtMaMon.setToolTipText("");
+        txtMaMon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMaMonKeyReleased(evt);
+            }
+        });
+        pnlChiTiet.add(txtMaMon, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 190, 29));
+
+        txtTimKiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtTimKiem.setForeground(new java.awt.Color(49, 139, 130));
+        txtTimKiem.setToolTipText("");
+        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiemKeyReleased(evt);
+            }
+        });
+        pnlChiTiet.add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 180, 30));
+
+        btnTimKiem.setForeground(new java.awt.Color(49, 139, 130));
+        btnTimKiem.setText("Tìm Kiếm");
+        btnTimKiem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnTimKiem.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
+        pnlChiTiet.add(btnTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 90, 30));
+
+        cboLoaiMon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cboLoaiMon.setForeground(new java.awt.Color(49, 139, 130));
+        cboLoaiMon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Khai Vị", "Tráng Miệng", "Xào", "Luộc", "Chiên", "Súp", "Canh", "Hấp" }));
+        cboLoaiMon.setToolTipText("");
+        cboLoaiMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboLoaiMonActionPerformed(evt);
+            }
+        });
+        pnlChiTiet.add(cboLoaiMon, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 190, 29));
+
+        pnlMonAn.add(pnlChiTiet, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 34, -1, 350));
+
+        lblTieuDe.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        lblTieuDe.setForeground(new java.awt.Color(49, 139, 130));
+        lblTieuDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTieuDe.setText("MÓN ĂN");
+        lblTieuDe.setToolTipText("");
+        pnlMonAn.add(lblTieuDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 510, -1));
+
+        pnlHinhAnh.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHinhAnh.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblHinhAnh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        lblHinhAnh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHinhAnhMouseClicked(evt);
+            }
+        });
+        pnlHinhAnh.add(lblHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 190));
+
+        pnlMonAn.add(pnlHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 416, 160, 190));
+
+        btnXoa.setForeground(new java.awt.Color(49, 139, 130));
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Delete_28px.png"))); // NOI18N
+        btnXoa.setText("Xóa");
+        btnXoa.setToolTipText("");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+        pnlMonAn.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 520, 110, -1));
+
+        btnSua.setForeground(new java.awt.Color(49, 139, 130));
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/edit_28px.png"))); // NOI18N
+        btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
+        pnlMonAn.add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 570, 110, -1));
+
+        btnThem.setForeground(new java.awt.Color(49, 139, 130));
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/add_28px.png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
+        pnlMonAn.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 470, 110, -1));
+
+        btnLamMoi.setForeground(new java.awt.Color(49, 139, 130));
+        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/reset_28px.png"))); // NOI18N
+        btnLamMoi.setText("Làm Mới");
+        btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLamMoiActionPerformed(evt);
+            }
+        });
+        pnlMonAn.add(btnLamMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 110, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlMonAn, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlMonAn, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void lblThoatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblThoatMouseClicked
+        exit();
+    }//GEN-LAST:event_lblThoatMouseClicked
+
+    private void tblMonAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMonAnMouseClicked
+        index = tblMonAn.getSelectedRow();
+        fill(index);
+    }//GEN-LAST:event_tblMonAnMouseClicked
+
+    private void txtGiaTienKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiaTienKeyReleased
+        txtGiaTien.setText(txtGiaTien.getText().replaceAll("[abcdefghijklmnopqrstuvwxyz-]", ""));
+
+    }//GEN-LAST:event_txtGiaTienKeyReleased
+
+    private void cboDonViTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDonViTinhActionPerformed
+
+    }//GEN-LAST:event_cboDonViTinhActionPerformed
+
+    private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
+
+    }//GEN-LAST:event_txtTimKiemKeyReleased
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        search();
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        add();
+        load();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        index = tblMonAn.getSelectedRow();
+        edit(index);
+        load();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        index = tblMonAn.getSelectedRow();
+
+        delete(index);
+        reset();
+        load();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
+        reset();
+        load();
+    }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void cboLoaiMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLoaiMonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboLoaiMonActionPerformed
+
+    private void lblHinhAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhAnhMouseClicked
+        open();
+    }//GEN-LAST:event_lblHinhAnhMouseClicked
+
+    private void txtTenMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenMonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenMonActionPerformed
+
+    private void txtMaMonKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaMonKeyReleased
+        BLL_MaTenLoai.isAdd(tblMonAn, txtMaMon, btnThem, 0);
+    }//GEN-LAST:event_txtMaMonKeyReleased
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLamMoi;
+    private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnTimKiem;
+    private javax.swing.JButton btnXoa;
+    private javax.swing.JComboBox<String> cboDonViTinh;
+    private javax.swing.JComboBox<String> cboLoaiMon;
+    private javax.swing.JLabel lblDonViTinh;
+    private javax.swing.JLabel lblGiaTien;
+    private javax.swing.JLabel lblHinhAnh;
+    private javax.swing.JLabel lblLoaiMon;
+    private javax.swing.JLabel lblMaMon;
+    private javax.swing.JLabel lblTenMon;
+    private javax.swing.JLabel lblThoat;
+    private javax.swing.JLabel lblThongTin;
+    private javax.swing.JLabel lblTieuDe;
+    private javax.swing.JPanel pnlChiTiet;
+    private javax.swing.JPanel pnlHinhAnh;
+    private javax.swing.JPanel pnlMonAn;
+    private javax.swing.JScrollPane scrMonAn;
+    private javax.swing.JTable tblMonAn;
+    private javax.swing.JTextField txtGiaTien;
+    private javax.swing.JTextField txtMaMon;
+    private javax.swing.JTextField txtTenMon;
+    private javax.swing.JTextField txtTimKiem;
+    // End of variables declaration//GEN-END:variables
+}

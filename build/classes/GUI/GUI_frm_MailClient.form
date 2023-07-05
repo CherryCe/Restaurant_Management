@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="undecorated" type="boolean" value="true"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lblCC" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="txtCC" min="-2" pref="270" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblNguoiGui" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <Component id="txtNguoiGui" min="-2" pref="270" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblNguoiNhan" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMatKhau" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="11" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtMatKhau" max="32767" attributes="0"/>
+                          <Component id="txtNguoiNhan" pref="270" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblNoiDung" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTieuDe" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnThoat" min="-2" pref="80" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnGui" min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtTieuDe" alignment="1" min="-2" pref="270" max="-2" attributes="0"/>
+                              <Component id="scrNoiDung" alignment="1" min="-2" pref="270" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblMailBaoCao" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="lblMailBaoCao" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblNguoiGui" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNguoiGui" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblNguoiNhan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNguoiNhan" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCC" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCC" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtTieuDe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTieuDe" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblNoiDung" min="-2" max="-2" attributes="0"/>
+                  <Component id="scrNoiDung" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnGui" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnThoat" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblMailBaoCao">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mail B&#xe1;o C&#xe1;o"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNguoiGui">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ng&#x1b0;&#x1edd;i G&#x1eed;i:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMatKhau">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="M&#x1ead;t Kh&#x1ea9;u:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNguoiNhan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ng&#x1b0;&#x1edd;i Nh&#x1ead;n:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCC">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CC"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNguoiGui">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNguoiNhan">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCC">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTieuDe">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ti&#xea;u &#xd0;&#x1ec1;:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNoiDung">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="N&#x1ed9;i Dung:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTieuDe">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtMatKhau">
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="scrNoiDung">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txaNoiDung">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="btnGui">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="G&#x1eed;i"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuiActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnThoat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThoatActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
